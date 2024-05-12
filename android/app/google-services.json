@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544396889180",
+    "project_id": "wolfproject5",
+    "storage_bucket": "wolfproject5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544396889180:android:97c9adc0e0914f21c26a99",
+        "android_client_info": {
+          "package_name": "com.example.practice_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwAcVEkAp8tisaXTvD95Z9y8AGTKOcLFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
