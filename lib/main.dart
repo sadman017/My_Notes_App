@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_app/Views/login_view.dart';
 import 'package:practice_app/Views/register_view.dart';
+import 'package:practice_app/Views/verfyemail_view.dart';
 import 'package:practice_app/constants/routes.dart';
-// import 'package:practice_app/Views/verfyemail_view.dart';
 import 'package:practice_app/firebase_options.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +20,7 @@ void main() {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
        notesRoute: (context) => const NotesView(),
+       verifyEmailRoute:(context) => const VerifyEmailView(),
       },
     ));
 }
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
                   if (user.emailVerified){
                     return const NotesView();
                   }else{
-                    return const NotesView();
+                    return const VerifyEmailView();
                   }
                  }else{
                      return const LoginView();
