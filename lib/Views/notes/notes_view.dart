@@ -24,12 +24,6 @@ class _NotesViewState extends State<NotesView> {
   }
 
   @override
-  void dispose() {
-    _notesService.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
@@ -64,16 +58,44 @@ class _NotesViewState extends State<NotesView> {
                 stream: _notesService.allNotes,
                  builder: (context, snapshot){
                   switch (snapshot.connectionState){
-                    
                     case ConnectionState.waiting:
                     case ConnectionState.active:
-                      return const Text("Waiting ...");
+                      if(snapshot.hasData){
+                        final allNotes = snapshot.data as List<DatabaseNote>;
+                        return ListView.builder(
+                          itemCount: allNotes.length,
+                          itemBuilder: (context, index){
+                            final note = allNotes[index];
+                            return ListTile(
+                              title: Text(note.text,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(color: Colors.black),
+                                softWrap: true,
+                              ),
+                              // subtitle: Text(note.description),
+                              onTap: (){
+                              
+                              },
+                              leading: IconButton(onPressed: (){
+                                // Navigator.of(context).pushNamed(deleteNoteRoute, arguments: note);
+                              }, icon: const Icon(Icons.note),),
+                              trailing: IconButton(onPressed: (){
+                                // Navigator.of(context).pushNamed(editNoteRoute, arguments: note);
+                              }, icon: const Icon(Icons.edit),),
+
+                            );
+                          },
+                          );
+                      }else{
+                        return const Center(child: CircularProgressIndicator());
+                      }
                       default:
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                   }
                  });
                  default:
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
           }
           }
           ),
