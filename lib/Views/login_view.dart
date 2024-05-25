@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice_app/Services/auth/auth_exception.dart';
-import 'package:practice_app/Services/auth/auth_service.dart';
+import 'package:practice_app/Services/auth/bloc/auth_bloc.dart';
+import 'package:practice_app/Services/auth/bloc/auth_event.dart';
 import 'package:practice_app/constants/routes.dart';
 import 'package:practice_app/utilities/dialogs/error_dialog.dart';
 
@@ -65,21 +67,12 @@ class _LoginViewState extends State<LoginView> {
                         final email = _email.text;
                         final password = _password.text;
                         try{
-                           await AuthService.firebase().logIn(
-                            email: email,
-                            password: password,
-                           );
-                         final user = AuthService.firebase().currentUser;
-                         if(user?.isEmailVerified ?? false){
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                          notesRoute, 
-                          (route) => false,);
-                         }else{
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                           verifyEmailRoute,
-                           (route) => false,
-                           );
-                         } 
+                          context.read<AuthBloc>().add(
+                            AuthEventLogIn(
+                              email: email, 
+                              password: password,
+                              ),
+                          );
                         } on UserNotFoundAuthException {
                            await showErrorDialog(
                             context, 
