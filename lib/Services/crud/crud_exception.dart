@@ -7,3 +7,4 @@ class UserDoesNotExist implements Exception{}
 class CouldNotDeleteNote implements Exception{}
 class NoteDoesNotExist implements Exception{}
 class CouldNotUpdateNote implements Exception{}
+class UserShouldLogInBeforeReadingAllNotes implements Exception{}

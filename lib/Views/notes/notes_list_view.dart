@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Services/crud/notes_service.dart';
+import 'package:practice_app/constants/routes.dart';
 import 'package:practice_app/utilities/dialogs/delete_dialog.dart';
 
 typedef NoteCallBack = void Function(DatabaseNote note);
@@ -35,15 +36,20 @@ class NotesListView extends StatelessWidget {
                                 onTap(note);
                               },
                               leading: IconButton(onPressed: (){
-                                // Navigator.of(context).pushNamed(deleteNoteRoute, arguments: note);
-                              }, icon: const Icon(Icons.note),),
+                                 Navigator.of(context).pushNamed(notesRoute, 
+                                 arguments: note,
+                                 );
+                              }, icon: const Icon(Icons.note),
+                                 color: Colors.yellow,
+                              ),
                               trailing: IconButton(onPressed: () async{
-                                // Navigator.of(context).pushNamed(editNoteRoute, arguments: note);
                                 final shouldDelete = await showDeleteDialog(context);
                                 if(shouldDelete){
                                   onDeleteNote(note);
                                 }
-                              }, icon: const Icon(Icons.delete),),
+                              }, icon: const Icon(Icons.delete),
+                                 color: Colors.red,
+                              ),
 
                             );
                           },
