@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Services/cloud/cloud_note.dart';
-import 'package:practice_app/constants/routes.dart';
 import 'package:practice_app/utilities/dialogs/delete_dialog.dart';
 
 typedef NoteCallBack = void Function(CloudNote note);
@@ -36,9 +35,14 @@ class NotesListView extends StatelessWidget {
                                 onTap(note);
                               },
                               leading: IconButton(onPressed: (){
-                                 Navigator.of(context).pushNamed(notesRoute, 
-                                 arguments: note,
-                                 );
+                            //     final email = _email.text;
+                            //     final password = _password.text;
+                            //     context.read<AuthBloc>().add(
+                            //       AuthEventLogIn(
+                            //       email: email,
+                            //       password: password,
+                            //     ),
+                            // );
                               }, icon: const Icon(Icons.note),
                                  color: Colors.yellow,
                               ),
