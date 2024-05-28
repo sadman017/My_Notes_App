@@ -4,6 +4,7 @@ import 'package:practice_app/Services/auth/bloc/auth_bloc.dart';
 import 'package:practice_app/Services/auth/bloc/auth_event.dart';
 import 'package:practice_app/Services/auth/bloc/auth_state.dart';
 import 'package:practice_app/Services/auth/firebase_auth_provider.dart';
+import 'package:practice_app/Views/forgot_password_view.dart';
 import 'package:practice_app/Views/login_view.dart';
 import 'package:practice_app/Views/notes/create_update_note_view.dart';
 import 'package:practice_app/Views/notes/notes_view.dart';
@@ -44,7 +45,10 @@ class HomePage extends StatelessWidget {
           return const VerifyEmailView();
         } else if(state is AuthStateLoggedOut){
           return const LoginView();
-        } else if(state is AuthStateRegistering){
+        } else if(state is AuthStateForgotPassword){
+          return const ForgotPasswordView();
+        }
+         else if(state is AuthStateRegistering){
           return const RegisterView();
         }
          else{
