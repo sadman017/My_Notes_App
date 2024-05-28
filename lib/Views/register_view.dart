@@ -65,6 +65,7 @@ class _RegisterViewState extends State<RegisterView> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   hintText: "Enter email",
+                  labelText: "Email",
                 ),
               ),
               TextField(
@@ -74,6 +75,7 @@ class _RegisterViewState extends State<RegisterView> {
                 autocorrect: false,
                 decoration: const InputDecoration(
                   hintText: "Enter Password",
+                  labelText: "Password",
                 ),
               ),
               TextButton(

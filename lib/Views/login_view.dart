@@ -72,6 +72,7 @@ class _LoginViewState extends State<LoginView> {
                 autocorrect: false,
                 decoration: const InputDecoration(
                   hintText: "Enter Password",
+                  labelText: "Password",
                 ),
               ),
               TextButton(
