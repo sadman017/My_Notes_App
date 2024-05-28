@@ -10,6 +10,7 @@ import 'package:practice_app/Views/notes/notes_view.dart';
 import 'package:practice_app/Views/register_view.dart';
 import 'package:practice_app/Views/verfyemail_view.dart';
 import 'package:practice_app/constants/routes.dart';
+import 'package:practice_app/helpers/loading/loading_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<AuthBloc>().add(const AuthEventInitialize());
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       builder: (context, state){
         if(state is AuthStateLoggedIn){
           return const NotesView();
@@ -53,6 +54,15 @@ class HomePage extends StatelessWidget {
             ),
           );
         }
-      });
+      }, listener: (context, state) { 
+        if(state.isLoading){
+          LoadingScreen().show(
+            context: context, 
+            text: "Please wait a moment",
+            color: Theme.of(context).colorScheme.primary,);
+        }else{
+          LoadingScreen().hide();
+        }
+       },);
   }
 }
